@@ -1,7 +1,8 @@
-import { Controller, Post, Get, Body } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards } from '@nestjs/common';
 import { User } from '.prisma/client';
 import { UserService } from './user.service';
 import { IResponseBase } from '../interfaces/types';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -12,6 +13,7 @@ export class UserController {
     return this.userService.create(body);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAll(): Promise<IResponseBase> {
     return this.userService.getAll();
