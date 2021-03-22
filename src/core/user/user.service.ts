@@ -47,4 +47,25 @@ export class UserService {
       };
     }
   }
+
+  async getById(id: number): Promise<IResponseBase> {
+    try {
+      const response = await this.prisma.user.findFirst({
+        where: {
+          id,
+        },
+      });
+
+      return {
+        status: STATUS_TYPE.SUCCESS,
+        data: response,
+        message: USER_RESPONSE.GET_BY_ID_SUCCESS,
+      };
+    } catch (error) {
+      return {
+        status: STATUS_TYPE.ERROR,
+        error: USER_RESPONSE.GET_BY_ID_ERROR,
+      };
+    }
+  }
 }
