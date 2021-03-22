@@ -11,7 +11,11 @@ export class UserService {
   async create(user: Prisma.UserCreateInput): Promise<IResponseBase> {
     try {
       const response = await this.prisma.user.create({
-        data: user,
+        data: {
+          ...user,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       });
 
       return {
