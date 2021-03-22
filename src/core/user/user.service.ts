@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { Prisma } from '@prisma/client';
 import { IResponseBase, STATUS_TYPE } from '../interfaces/types';
-import { USER_RESPONSE } from './types/user.dto';
+import { USER_RESPONSE } from './constants/user.enum';
 
 @Injectable()
 export class UserService {
